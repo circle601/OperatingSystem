@@ -1,0 +1,31 @@
+
+
+
+Memory to register_____
+mov eax, [esp+128]
+
+__________________UnloadVar
+
+POP EDX
+
+
+case(0x24): //TODO Constant
+
+when not defined
+	if < 2bit
+		push 10
+	else
+		push 1000
+	end
+
+
+direct to memory 
+mov DWORD PTR [esp+4], 1000
+
+
+//relative jump
+e9 00 01 00 00          jmp    105 <hello>
+ eb 02       
+
+ backwards jump
+ 7:  eb f7                   jmp    0 <_main> 

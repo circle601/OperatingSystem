@@ -1,0 +1,106 @@
+     opcodes
+0x0  nop // length 1 
+__________debugging
+0x10  breakpoint // length 1
+0x11  throw // length 2: opcode, object to throw
+0x12 PrintNum // length 2: opcode, object to throw Debug only
+_________Function
+0x20 return // length 1: returns null
+0x21 ReturnObject  // length 2: opcode, object to return
+0x22 Call // length 3: opcode, var,returnvar, elementid , param count, parameters
+0x23 CallObject // length2: opcode, object // for use when you have a bytecode in an object
+0x24 Constant // length3+: opcode,varable,Data
+0x25 ConstantPool //loads a constant from the pool length2: opcode, id
+0x26 Call(dynamic) // length2: opcode, var,idvarable
+0x27 returnConstant // length3+: opcode,varable,Data todo
+0x28 Call(compiletime) // length 3: opcode, object, elementid  // calling a static method
+0x29 Call(self compiletime) // length 3: opcode, elementid,param count, params  // calling a static method in same class
+_________scope
+0x30 scopeStart // length 0
+0x31 ScopeElse // length 0
+0x32 ScopeEnd // length 0
+
+_________branch
+0x40 ConditionalToStart 
+0x41 ConditionalToEnd
+0x42 ConditionalToExit//   exits all blocks in else trail
+0x43 ToStart
+0x44 ToEnd
+0x45 ToExit  //     exits all blocks in else trail
+
+__________Varables
+0x50 CreateVar// opcode,varable,type
+0x51 DisposeVar // probally not supported
+0x52 SetVar
+
+0x53 Null // var
+0x54 New(dynamic) // opcode ,type(var), result(var)
+0x55 New(static) // opcode type(int),result(var)
+0x56 GetType
+0x57 GetElement
+0x58 SetElement
+0x59 Typecast
+0x5a Typecast(dynamic)
+0x5b GetElement(dynamic)
+0x5c SetElement(dynamic)
+
+__________reflection
+0x60 GetBase
+0x61 GetElementType
+0x62 GetElementCount
+0x63 GetElementFlags
+0x64 checkcast
+0x65 instanceof
+0x66 GetElementPointer
+
+________math
+0x70 Div
+0x71 Mul
+0x72 Add // var , var ,resultvar
+0x73 Sub // var , var ,resultvar
+0x74 Negate
+0x75 Remainder
+0x76 Inc // opcode varable_________testcases needed   register,memory
+0x77 Dec // opcode varable_________testcases needed   register,memory
+0x78 Add Constant // var, object
+0x79 Sub Constant // var, object
+
+
+_________bitwise
+0x80 OR
+0x81 Rshift
+0x82 LShift
+0x83 Xor
+0x84 and
+//0x85 nand probally not supported
+0x86 not
+//0x87 nor probally not supported
+
+_________comparision
+0x91 RefEqual
+0x92 Equal
+0x93 NotEqual
+0x94 Compare
+0x95 GtThan
+0x96 LsThan
+0x97 IsNull
+0x98 NotNull
+0x99 Zero
+0x9a nZero
+
+_________Sync
+
+
+_________Array
+
+
+_________switchtable
+
+
+_________Raw/Serilisation
+
+
+
+
+
+
