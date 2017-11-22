@@ -42,24 +42,55 @@ namespace CodeCompiler
 
 
 
+            
+
+
             string filepath = @"D:\Users\alex\Documents\Visual Studio 2015\Projects\OperatingSystem\ManagedOS\";
+
+
+           
+
+
+
+
+
             DirectoryInfo d = new DirectoryInfo(filepath);
+
+
+        
+
+
+          
             var files = d.GetFiles("*.cs").ForEach(x => x.FullName).ToList();
-            JitCompiler.Compiler.CompileFileList(files);
+            if (files.Count > 0) {
+                JitCompiler.Compiler.CompileFileList(files);
 
                 Console.WriteLine("Running");
-            var p = new Process();
-            p.StartInfo = new ProcessStartInfo(@"D:\Users\alex\Documents\Visual Studio 2015\Projects\OperatingSystem\Debug\Jit.exe")
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo(@"D:\Users\alex\Documents\Visual Studio 2015\Projects\OperatingSystem\Debug\Jit.exe")
+                {
+                    UseShellExecute = false
+                };
+
+                p.Start();
+                p.WaitForExit();
+
+                Console.WriteLine("DONE!");
+                Console.ReadLine();
+
+            }
+            else
             {
-                UseShellExecute = false
-            };
+                  var Asmfiles = d.GetFiles("*.asm").ForEach(x => x.FullName).ToList();
+                foreach (var file in Asmfiles)
+                {
+                    string[] Lines = File.ReadAllLines(file);
+                    JitCompiler.Assembler.Assembler asm = new JitCompiler.Assembler.Assembler(Lines);
+                    MachineCode code = asm.Assemble();
+                    File.WriteAllBytes(Path.ChangeExtension(file,".O"),  code.GetOutput());
+                }
+            }
 
-            p.Start();
-            p.WaitForExit();
-
-            Console.WriteLine("DONE!");
-            Console.ReadLine();
-            
         }
 
 

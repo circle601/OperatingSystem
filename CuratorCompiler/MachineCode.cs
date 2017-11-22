@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JitCompiler
 {
-    class MachineCode
+    public class MachineCode
     {
         
         public MachineCode()
@@ -48,6 +48,14 @@ namespace JitCompiler
         public uint LableLength(lable lab)
         {
             return (uint)(Output.Count - lab.pos);
+        }
+
+
+        public void AlterCC(lable lab, byte data)
+        {
+            int index = lab.pos;
+
+            Output[index] = ((byte)(data & 0xFF));
         }
 
         public void AlterCCInt(lable lab, uint data)
